@@ -42,8 +42,12 @@ module.exports = {
     },
     Userprofileupdate = {
         // 기존 회원의 데이터를 불러오는 쿼리
-        query1: `SELECT * FROM t_user WHERE id=?;`
+        query1: `SELECT * FROM t_user WHERE id=<userid>;`,
         // 새로운 데이터를 업데이트하는 쿼리
+        query2: `
+        UPDATE t_user
+        SET user_email='<new_email>', type_business='<new_type_business>'
+        WHERE id=<userid>;`
     },
     Signup = {
         // 새로운 유저정보를 추가하는 쿼리
