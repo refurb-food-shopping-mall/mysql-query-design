@@ -51,7 +51,7 @@ module.exports = {
     },
     Login = {
         // 입력한id값을 유저테이블에서 찾는 쿼리
-
+        query1: `SELECT user_name, user_email, user_password FROM t_user WHERE id=3;`
     },
     Addproduct = {
         // 제품테이블에 새로운 제품을 추가하는 쿼리
