@@ -66,5 +66,7 @@ module.exports = {
         query1: `INSERT INTO t_review (product_id, user_id, review_title, review_description, star_grade)
         VALUES (6, 3, '야채가 맛있어여', '야채가 너무 맛있음', 5), (6, 3, '야채가 맛있어여2', '야채가 너무 맛있음2', 5), (6, 3, '야채가 맛있어여3', '야채가 너무 맛있음3', 5);`,
         // 리뷰이미지테이블에 해당 리뷰의 이미지를 추가하는 쿼리
+        query2: `INSERT INTO t_review_image(review_id, path)
+        VALUES (1, "https:야채리뷰사진1"), (2, "https:야채리뷰사진2"t_reviewt_review_image), (3, "https:야채리뷰사진3");`
     }
 }
