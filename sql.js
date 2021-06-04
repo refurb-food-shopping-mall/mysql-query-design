@@ -56,8 +56,10 @@ module.exports = {
     Addproduct = {
         // 제품테이블에 새로운 제품을 추가하는 쿼리
         query1: `INSERT INTO t_product (register_user_id, product_category, product_name, product_price, delivery_price, add_delivery_price, total_product)
-        VALUES (3, 2, '야채', 39000, 3000, 3000, 45000);`
+        VALUES (3, 2, '야채', 39000, 3000, 3000, 45000);`,
         // 제품이미지데이블에 해당 제품의 이미지를 추가하는 쿼리
+        query2: `INSERT INTO t_product_image (product_id, type_image, path)
+        VALUES (6, 1, "http://야채썸네일이미지주소"), (6, 2, "http://야채제품이미지주소"), (6, 3, "http://야채제품설명이이미지주소");`
     },
     Review = {
         // 리뷰테이블에 새로운 리뷰를 등록하는 쿼리
