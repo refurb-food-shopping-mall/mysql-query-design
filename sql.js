@@ -29,10 +29,15 @@ module.exports = {
     },
     Product = {
         // 상품 정보 가져오는 쿼리
+        query1: `SELECT * FROM t_product WHERE id=<product_id>;`,
         // 상품에 해당하는 리뷰가져오는 쿼리
+        query2: `SELECT * FROM t_review WHERE product_id=<product_id>;`,
         // 상품에 해당하는 큐엔에이 가져오는 쿼리
-        // 상품 이미지 가져오는 쿼리
-        // 상품 상세설명 이미지 가져오는 쿼리
+        query3: `SELECT * FROM t_question WHERE product_id=<product_id>;`,
+        // 상품 제품 이미지 (type 2) 가져오는 쿼리
+        query4: `SELECT * FROM t_product_image WHERE product_id=<product_id> AND type_image=2;`,
+        // 상품 상세설명 이미지 (type 3) 가져오는 쿼리
+        query5: `SELECT * FROM t_product_image WHERE product_id=<product_id> AND type_image=3;`,
     },
     Shipping = {
         // 현재 배송중인 상품의 개수를 구하는 쿼리 (트럭옆에 숫자)
@@ -46,7 +51,7 @@ module.exports = {
         // 새로운 데이터를 업데이트하는 쿼리
         query2: `
         UPDATE t_user
-        SET user_email='<new_email>', type_business='<new_type_business>'
+        SET user_email=<new_email>, type_business=<new_type_business>
         WHERE id=<userid>;`
     },
     Signup = {
