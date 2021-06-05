@@ -27,6 +27,7 @@ module.exports = {
 
         query5: ``
     },
+    // cf) [type_image] => 1. 썸네일 2. 제품이미지 3. 제품설명이미지
     Product = {
         // 상품 정보 가져오는 쿼리
         query1: `SELECT * FROM t_product WHERE id=<product_id>;`,
@@ -59,8 +60,8 @@ module.exports = {
         // 새로운 데이터를 업데이트하는 쿼리
         query2: `
         UPDATE t_user
-        SET user_email=<new_email>, type_business=<new_type_business>
-        WHERE id=<userid>;`
+        SET user_email=<새로운 이메일값>, type_business=<새로운 업종값>
+        WHERE id=<user_id>;`
     },
     Signup = {
         // 새로운 유저정보를 추가하는 쿼리
@@ -69,8 +70,9 @@ module.exports = {
     },
     Login = {
         // 입력한id값을 유저테이블에서 찾는 쿼리
-        query1: `SELECT user_name, user_email, user_password FROM t_user WHERE id=3;`
+        query1: `SELECT user_name, user_email, user_password FROM t_user WHERE id=<user_id>;`
     },
+    // cf) [type_image] => 1. 썸네일 2. 제품이미지 3. 제품설명이미지
     Addproduct = {
         // 제품테이블에 새로운 제품을 추가하는 쿼리
         query1: `INSERT INTO t_product (register_user_id, product_category, product_name, product_price, delivery_price, add_delivery_price, total_product)
