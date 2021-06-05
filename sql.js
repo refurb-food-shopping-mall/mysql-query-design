@@ -38,6 +38,8 @@ module.exports = {
         query4: `SELECT * FROM t_product_image WHERE product_id=<product_id> AND type_image=2;`,
         // 상품 상세설명 이미지 (type 3) 가져오는 쿼리
         query5: `SELECT * FROM t_product_image WHERE product_id=<product_id> AND type_image=3;`,
+        // query4 + query5
+        query4withquery5: `SELECT * FROM t_product_image WHERE product_id=6 AND (type_image=2 OR type_image=3);`
     },
     Shipping = {
         // 현재 배송중인 상품의 개수를 구하는 쿼리 (트럭옆에 숫자)
