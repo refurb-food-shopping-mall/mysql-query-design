@@ -39,13 +39,19 @@ module.exports = {
         // 상품 상세설명 이미지 (type 3) 가져오는 쿼리
         query5: `SELECT * FROM t_product_image WHERE product_id=<product_id> AND type_image=3;`,
         // query4 + query5
-        query4withquery5: `SELECT * FROM t_product_image WHERE product_id=6 AND (type_image=2 OR type_image=3);`
+        query4withquery5: `SELECT * FROM t_product_image WHERE product_id=<product_id> AND (type_image=2 OR type_image=3);`
     },
+    // cf) [order_status] => 1. 입금대기 2.배송준비중 3.배송중 4.배송완료 5.반품완료
+    // cf) [data format] => '2021-06-01 14:00'
     Shipping = {
-        // 현재 배송중인 상품의 개수를 구하는 쿼리 (트럭옆에 숫자)
-        // 특정 날짜를 기준으로 배송이 완료된 상품의 개수를 구하는 쿼리
-        // 특정 날짜를 기준으로 반품이 완료된 상품의 개수를 구하는 쿼리
-        // 특정 날짜를 기준으로 주문한 상품의 목록을 구하는 쿼리
+        // 유저의 현재 배송중인 상품의 개수를 구하는 쿼리 (트럭옆에 숫자)
+        query1: `SELECT COUNT(id) FROM t_order WHERE  user_id=<user_id> AND order_status=3;`,
+        // 유저의 특정 날짜를 기준으로 배송이 완료된 상품의 개수를 구하는 쿼리
+        query2: `SELECT COUNT(id) FROM t_order WHERE del_complete_day BETWEEN <data_format> AND <data_format> AND order_status=4;`,
+        // 유저의 특정 날짜를 기준으로 반품이 완료된 상품의 개수를 구하는 쿼리
+        query3: `SELECT COUNT(id) FROM t_order WHERE del_complete_day BETWEEN <data_format> AND <data_format> AND order_status=5;`,
+        // 유저의 특정 날짜를 기준으로 주문한 상품의 목록을 구하는 쿼리
+        query4: `SELECT * FROM t_order WHERE del_complete_day BETWEEN <data_format> AND <data_format>;`
     },
     Userprofileupdate = {
         // 기존 회원의 데이터를 불러오는 쿼리
