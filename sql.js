@@ -58,24 +58,37 @@ module.exports = {
     
     },
     Shipping = {
-        현재 배송중인 상품의 개수를 구하는 쿼리 (트럭옆에 숫자)
-        특정 날짜를 기준으로 배송이 완료된 상품의 개수를 구하는 쿼리
-        특정 날짜를 기준으로 반품이 완료된 상품의 개수를 구하는 쿼리
-        특정 날짜를 기준으로 주문한 상품의 목록을 구하는 쿼리
+        /*
+        query1 : `SELECT t_order.ordered_day, t_order.product_amount, t_order.ordered_day, t_order.order_status, t_product.product_name, t_product.product_price, t_product.delivery_price, t_product.add_delivery_price
+        FROM t_order, t_product
+        WHERE ? = t_order.user_id AND t_order.product_id = t_product.id`*/
     },
     Userprofileupdate = {
         // 기존 회원의 데이터를 불러오는 쿼리
         query1: `SELECT * FROM t_user WHERE id = ?;`,
-        //수정된 데이터를 업데이트하는 쿼리
+        
+        //수정된 유저의 정보를 업데이트하는 쿼리
         query2: `
-        UPDATE t_user
-        SET user_name = ?, phone_number = ?, type_business=<새로운 업종값>
-        WHERE id=<user_id>;`
+        UPDATE t_user SET user_name = ?, phone_number = ?, type_business = ?
+        WHERE id = ?;`,
+
+        //수정된 유저의 주소를 업데이트하는 쿼리
+        query3 : `UPDATE t_address SET t_address.user_id = ?, t_address.receiver = ?, t_address.post_code = ?, 
+            t_address.city = ?, t_address.road_name = ?, t_address.detailed_address = ?, t_address.first_phonenumber = ?,
+            t_address.address_type = ?, t_address.default_address = ?
+            WHERE user_id = ?;`
+
     },
     Signup = {
          // 새로운 유저정보를 추가하는 쿼리
          query1: `INSERT INTO t_user (user_name, phone_number, user_email, user_password, type_business, user_point_money)
-         VALUES (?, ?, ?, ?, ?, ?);`
+         VALUES (?, ?, ?, ?, ?, ?);`,
+
+         //새로운 유저의 기본 배송지를 저장하는 쿼리
+         query2 : `INSERT INTO t_address (t_address.user_id, t_address.receiver, t_address.post_code, 
+            t_address.city, t_address.road_name, t_address.detailed_address, t_address.first_phonenumber,
+            t_address.address_type, t_address.default_address)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 1, 1);`
     },
     Login = {
         // 입력한ID값과 일치하는 ID를 유저테이블에서 찾는 쿼리
